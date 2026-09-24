@@ -1,3 +1,5 @@
+70% de armazenamento usado … Se você atingir o limite, não poderá criar, editar ou fazer upload de arquivos. Aproveite 30 GB de armazenamento pagando R$ 1 por 3 meses R$ 4,50.
+100%
 :root {
   --bg: #0b1222;
   --bg-soft: #101a2e;
@@ -374,7 +376,30 @@ main {
 .project-card {
   padding: 21px;
   min-width: 0;
+  overflow: hidden;
 }
+
+.project-image {
+  display: block;
+  width: calc(100% + 42px);
+  height: 190px;
+  margin: -21px -21px 18px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card:first-child .project-image {
+  object-position: center 58%;
+}
+
+.project-card:nth-child(2) .project-image {
+  object-position: center 55%;
+}
+
+.project-card:nth-child(3) .project-image {
+  object-position: center 48%;
+}
+
 
 .card-top {
   display: flex;
