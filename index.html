@@ -10,33 +10,56 @@
   <link rel="stylesheet" href="style.css?v=3">
 </head>
 
-  <script>
-  const contador = document.getElementById("contador");
-  const botao = document.getElementById("btnParticipar");
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
 
-  let participantes = Number(localStorage.getItem("participantes")) || 0;
-  let jaParticipou = localStorage.getItem("jaParticipou") === "true";
+    const contador = document.getElementById("contador");
+    const botao = document.getElementById("btnParticipar");
 
-  contador.textContent = participantes;
+    // Recupera os dados salvos
+    let participantes = parseInt(localStorage.getItem("participantes")) || 0;
+    let jaParticipou = localStorage.getItem("jaParticipou") === "true";
 
-  if (jaParticipou) {
-    botao.disabled = true;
-    botao.textContent = "Você já participou ✓";
-  }
-
-  botao.addEventListener("click", () => {
-    if (jaParticipou) return;
-
-    participantes++;
-
-    localStorage.setItem("participantes", participantes);
-    localStorage.setItem("jaParticipou", "true");
-
+    // Mostra o contador
     contador.textContent = participantes;
 
-    botao.disabled = true;
-    botao.textContent = "Você já participou ✓";
-  });
+    // Se o usuário já participou anteriormente
+    if (jaParticipou) {
+        botao.disabled = true;
+        botao.textContent = "Você já participou ✓";
+        botao.classList.add("participou");
+    }
+
+    // Clique no botão
+    botao.addEventListener("click", () => {
+
+        // Impede uma segunda participação
+        if (jaParticipou) {
+            return;
+        }
+
+        // Adiciona 1 participante
+        participantes++;
+
+        // Marca que este usuário já participou
+        jaParticipou = true;
+
+        // Salva no navegador
+        localStorage.setItem("participantes", participantes);
+        localStorage.setItem("jaParticipou", "true");
+
+        // Atualiza o número na tela
+        contador.textContent = participantes;
+
+        // Desativa o botão
+        botao.disabled = true;
+        botao.textContent = "Você já participou ✓";
+
+        // Muda a aparência
+        botao.classList.add("participou");
+    });
+
+});
 </script>
   
 <body>
