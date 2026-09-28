@@ -679,3 +679,37 @@ main {
     color: #f2f5fb !important;
   }
 }
+.participacao {
+  margin: 30px auto;
+  padding: 22px;
+  max-width: 400px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: rgba(255,255,255,.025);
+  text-align: center;
+}
+
+#contador {
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.participacao p {
+  margin: 8px 0 17px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#btnParticipar {
+  border: none;
+  cursor: pointer;
+}
+
+#btnParticipar:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
