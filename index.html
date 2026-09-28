@@ -283,10 +283,9 @@
     <small>Projeto escolar • 2026</small>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
- <script>
-
+<script>
 const SUPABASE_URL = "https://tpiyrborvgezsimcpmej.supabase.co";
 const SUPABASE_KEY = "sb_publishable_VGNrfzqlaYoFCP6JjWsjkw_DCIo3_mm";
 
@@ -295,8 +294,9 @@ const supabase = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-   const contador = document.getElementById("contador");
+const contador = document.getElementById("contador");
 const botao = document.getElementById("btnParticipar");
+
 
 async function carregarContador() {
 
@@ -313,6 +313,7 @@ async function carregarContador() {
 
     contador.textContent = data.participantes;
 }
+
 
 async function participar() {
 
@@ -344,6 +345,7 @@ async function participar() {
     botao.disabled = true;
 }
 
+
 async function iniciar() {
 
     await carregarContador();
@@ -357,45 +359,12 @@ async function iniciar() {
     }
 }
 
+
 botao.addEventListener("click", participar);
 
 iniciar();
-   
-    const contador = document.getElementById("contador");
-    const botao = document.getElementById("btnParticipar");
 
-    let participantes = Number(localStorage.getItem("participantes")) || 0;
-    let jaParticipou = localStorage.getItem("jaParticipou") === "true";
-
-    contador.textContent = participantes;
-
-    function atualizarBotao() {
-      if (jaParticipou) {
-        botao.disabled = true;
-        botao.textContent = "Você já participou ✓";
-        botao.classList.add("participou");
-      }
-    }
-
-    atualizarBotao();
-
-    botao.addEventListener("click", function () {
-
-      if (jaParticipou) {
-        return;
-      }
-
-      participantes++;
-      jaParticipou = true;
-
-      localStorage.setItem("participantes", participantes);
-      localStorage.setItem("jaParticipou", "true");
-
-      contador.textContent = participantes;
-
-      atualizarBotao();
-    });
-  </script>
+</script>
   
 </body>
 </html>
