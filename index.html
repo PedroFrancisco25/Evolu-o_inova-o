@@ -10,57 +10,7 @@
   <link rel="stylesheet" href="style.css?v=3">
 </head>
 
- <script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    const contador = document.getElementById("contador");
-    const botao = document.getElementById("btnParticipar");
-
-    // Recupera os dados salvos
-    let participantes = parseInt(localStorage.getItem("participantes")) || 0;
-    let jaParticipou = localStorage.getItem("jaParticipou") === "true";
-
-    // Mostra o contador
-    contador.textContent = participantes;
-
-    // Se o usuário já participou anteriormente
-    if (jaParticipou) {
-        botao.disabled = true;
-        botao.textContent = "Você já participou ✓";
-        botao.classList.add("participou");
-    }
-
-    // Clique no botão
-    botao.addEventListener("click", () => {
-
-        // Impede uma segunda participação
-        if (jaParticipou) {
-            return;
-        }
-
-        // Adiciona 1 participante
-        participantes++;
-
-        // Marca que este usuário já participou
-        jaParticipou = true;
-
-        // Salva no navegador
-        localStorage.setItem("participantes", participantes);
-        localStorage.setItem("jaParticipou", "true");
-
-        // Atualiza o número na tela
-        contador.textContent = participantes;
-
-        // Desativa o botão
-        botao.disabled = true;
-        botao.textContent = "Você já participou ✓";
-
-        // Muda a aparência
-        botao.classList.add("participou");
-    });
-
-});
-</script>
   
 <body>
   <header class="topbar">
@@ -310,11 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="kicker">O futuro começa no presente</p>
       <h2>Inovação é melhorar o mundo<br>sem esquecer de cuidar dele.</h2>
       <p>
-        Quando energia limpa, tecnologia e responsabilidade caminham juntas,
-        novas possibilidades aparecem.
-      </p>
-      
-      <div class="participacao">
+  Quando energia limpa, tecnologia e responsabilidade caminham juntas,
+  novas possibilidades aparecem.
+</p>
+
+<div class="participacao">
   <div id="contador">0</div>
   <p>Usuários participaram</p>
 
@@ -322,8 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
     Eu participei!
   </button>
 </div>
-      
-      <a class="btn btn-primary" href="#inicio">Voltar ao início ↑</a>
+
+<a class="btn btn-primary" href="#inicio">Voltar ao início ↑</a>
     </section>
   </main>
 
@@ -332,5 +282,43 @@ document.addEventListener("DOMContentLoaded", () => {
     <p>ODS 7 • ODS 9 • Educação • Inovação • Sustentabilidade</p>
     <small>Projeto escolar • 2026</small>
   </footer>
+
+ <script>
+    const contador = document.getElementById("contador");
+    const botao = document.getElementById("btnParticipar");
+
+    let participantes = Number(localStorage.getItem("participantes")) || 0;
+    let jaParticipou = localStorage.getItem("jaParticipou") === "true";
+
+    contador.textContent = participantes;
+
+    function atualizarBotao() {
+      if (jaParticipou) {
+        botao.disabled = true;
+        botao.textContent = "Você já participou ✓";
+        botao.classList.add("participou");
+      }
+    }
+
+    atualizarBotao();
+
+    botao.addEventListener("click", function () {
+
+      if (jaParticipou) {
+        return;
+      }
+
+      participantes++;
+      jaParticipou = true;
+
+      localStorage.setItem("participantes", participantes);
+      localStorage.setItem("jaParticipou", "true");
+
+      contador.textContent = participantes;
+
+      atualizarBotao();
+    });
+  </script>
+  
 </body>
 </html>
