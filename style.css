@@ -679,48 +679,49 @@ main {
     color: #f2f5fb !important;
   }
 }
+
 .participacao {
   margin: 30px auto;
-  padding: 22px;
+  padding: 24px;
   max-width: 400px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: rgba(255,255,255,.025);
   text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 #contador {
   font-size: 42px;
-  line-height: 1;
   font-weight: 900;
+  line-height: 1;
   color: var(--accent);
 }
 
 .participacao p {
-  margin: 8px 0 17px;
+  margin: 8px 0 18px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 #btnParticipar {
-    position: relative;
-    z-index: 10;
-    border: none;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #btnParticipar:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
-#btnParticipar:disabled,
 #btnParticipar.participou {
-    background: #555 !important;
-    color: #aaa !important;
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-    filter: grayscale(1);
+  background: #555 !important;
+  color: #aaa !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+  filter: grayscale(1);
+  transform: none;
+}
+
+#btnParticipar:disabled {
+  pointer-events: none;
 }
