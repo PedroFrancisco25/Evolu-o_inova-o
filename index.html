@@ -10,6 +10,35 @@
   <link rel="stylesheet" href="style.css?v=3">
 </head>
 
+  <script>
+  const contador = document.getElementById("contador");
+  const botao = document.getElementById("btnParticipar");
+
+  let participantes = Number(localStorage.getItem("participantes")) || 0;
+  let jaParticipou = localStorage.getItem("jaParticipou") === "true";
+
+  contador.textContent = participantes;
+
+  if (jaParticipou) {
+    botao.disabled = true;
+    botao.textContent = "Você já participou ✓";
+  }
+
+  botao.addEventListener("click", () => {
+    if (jaParticipou) return;
+
+    participantes++;
+
+    localStorage.setItem("participantes", participantes);
+    localStorage.setItem("jaParticipou", "true");
+
+    contador.textContent = participantes;
+
+    botao.disabled = true;
+    botao.textContent = "Você já participou ✓";
+  });
+</script>
+  
 <body>
   <header class="topbar">
     <a class="brand" href="#inicio" aria-label="Voltar ao início">
