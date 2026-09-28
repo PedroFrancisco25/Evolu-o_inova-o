@@ -703,13 +703,15 @@ main {
 }
 
 #btnParticipar {
+  position: relative;
+  z-index: 10;
   border: none;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 #btnParticipar:disabled {
-  opacity: .55;
+  opacity: 0.55;
   cursor: not-allowed;
-  transform: none;
-  filter: none;
+  pointer-events: none;
 }
