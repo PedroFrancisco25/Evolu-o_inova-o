@@ -284,6 +284,81 @@
   </footer>
 
  <script>
+
+const SUPABASE_URL = "https://tpiyrborvgezsimcpmej.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_VGNrfzqlaYoFCP6JjWsjkw_DCIo3_mm";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+   const contador = document.getElementById("contador");
+const botao = document.getElementById("btnParticipar");
+
+async function carregarContador() {
+
+    const { data, error } = await supabase
+        .from("contador")
+        .select("participantes")
+        .eq("id", 1)
+        .single();
+
+    if (error) {
+        console.error("Erro ao carregar contador:", error);
+        return;
+    }
+
+    contador.textContent = data.participantes;
+}
+
+async function participar() {
+
+    if (localStorage.getItem("jaParticipou") === "true") {
+        return;
+    }
+
+    botao.disabled = true;
+    botao.textContent = "Registrando...";
+
+    const { data, error } = await supabase
+        .rpc("adicionar_participante");
+
+    if (error) {
+        console.error("Erro ao registrar participação:", error);
+
+        botao.disabled = false;
+        botao.textContent = "Eu participei!";
+
+        return;
+    }
+
+    contador.textContent = data;
+
+    localStorage.setItem("jaParticipou", "true");
+
+    botao.textContent = "Você já participou ✓";
+    botao.classList.add("participou");
+    botao.disabled = true;
+}
+
+async function iniciar() {
+
+    await carregarContador();
+
+    if (localStorage.getItem("jaParticipou") === "true") {
+
+        botao.textContent = "Você já participou ✓";
+        botao.classList.add("participou");
+        botao.disabled = true;
+
+    }
+}
+
+botao.addEventListener("click", participar);
+
+iniciar();
+   
     const contador = document.getElementById("contador");
     const botao = document.getElementById("btnParticipar");
 
